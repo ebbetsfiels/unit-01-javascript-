@@ -14,9 +14,9 @@ let clean =  raw.trim(). toLowerCase(); // 1. remove the extra spaces, make it a
 let space = indexOF();   // 2. find the space between the names
 let first = clean.slice(0.spaces);   // 3. cut out the first name
 let last  =clean.slice(space + 1 ) ;   // 4. cut out the last name
-first = ;       // 5. capitalize each one
-last  = ;
-console.log();  // 6. print "Last, First"
+first =first.charAt(0) first.toUpperCase();+first.slice(1)     // 5. capitalize each one
+last  = last.charAt(0)toUpperCase()+last.slice(1);
+console.log()(last+","+first); // 6. print "Last, First"
 </script>
 
 </body>
