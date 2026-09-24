@@ -7,7 +7,21 @@
 </head>
 <body>
     <script>
-        
+       let bill = parseFloat(prompt("what is the bill"));
+       let tip =parseFloat(prompt("what is the tip"));
+       let people = parseFloat (prompt("how many people are there"));
+       let total =bill * (1 +tip /100);
+       let perPerson =total/people;
+       alert("total bill is"+ total.toLocaleString("en-US",(style:"currency",currency:"USD")))
+       isNaN
+
+
+       let split= confirm("show the per-person split")
+       if (split=true){
+        alert("each person should pay:+ perPerson,tolacalestring("en -us",) )
+       }
+
+    
     </script>
 </body>
 </html>
