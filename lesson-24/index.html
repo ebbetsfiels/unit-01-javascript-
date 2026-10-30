@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gradebook</title>
+</head>
+<body>
+  <h1>Period 3 Gradebook</h1>
+  <ul id="gradebook"></ul>
+  <h2>Honor Roll</h2>
+  <ul id="honor"></ul>
+
+  <script>
+    let students = [
+      { name: "Maya", average: 94.5 },
+      { name: "Leo", average: 81.4 },
+      { name: "Priya", average: 67.8 },
+      { name: "Sam", average: 88 },
+      { name: "Jordan", average: 72.3 }
+    ];
+    //core 1: getElementById 
+   
+    let list = document.getElementById("gradebook")
+    //2 use a for loop over students for each student create `an li that reads the name and the average with toFixed(1),
+    for (let i = 0; < students.length; i++){
+        let li=document.createElement("li");
+        li. textContent = students [i]name + " " + students [i] average. toFixed
+        li.appendChild(list);
+        let highestStudent = students 101:
+     for (let i = 1; i < students. length; i++) {
+    if (students [i] average. highestStudent.average) g
+        highestStudent = students [i]:}
+// 3. After the loop, create a p that reads Report for 5 students (use students.length, not the number 5) and append it to document.body.
+Let para = document. createElement ("p") g
+para.textContent = "Report for " + [students. length] + " students";
+document.body.appendChild(para);
+// Stretch 4: Add a letter grade to each item from an if...else if chain, for example Maya: 94.5 (A): A for 90 and up, B for 80 and up, C for 70 and up, D for 60 and up, F below 60.
+      let letterGrade = "F";
+      if (currentStudent.average >= 90) {
+        letterGrade = "A";
+      } else if (currentStudent.average >= 80) {
+        letterGrade = "B";
+      } else if (currentStudent.average >= 70) {
+        letterGrade = "C";
+      } else if (currentStudent.average >= 60) {
+        letterGrade = "D";
+      }
+    // Stretch 5: Inside the loop, for every student with an average of 90 or higher, create a second, new li
+      if (currentStudent.average >= 90) {
+        let honorLi = document.createElement("li");
+        honorLi.textContent = currentStudent.name;
+        honorList.appendChild(honorLi);
+        // Challenge 6: Before building the list, sort students from highest to lowest average
+    students.sort(function(a, b) {
+      return b.average - a.average;
+    });
+    // Challenge 7: After the loop, append one last li to list that reads Class average
+    let classAverage = totalSum / students.length;
+    let averageLi = document.createElement("li");
+    averageLi.textContent = "Class average: " + classAverage.toFixed(1);
+    list.appendChild(averageLi);
+     // Challenge 8: Create an h2 reading All Students and insert it directly above the #gradebook list
+    let allStudentsHeading = document.createElement("h2");
+    allStudentsHeading.textContent = "All Students";
+    document.body.insertBefore(allStudentsHeading, list);
+      }
+
+  </script>
+  </body>
+  </html>
+    
