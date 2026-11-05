@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Arcade Controls</title>
+  <style>
+    .card { border: 2px solid purple; padding: 8px; width: 200px; margin: 6px 0; }
+    .glow { background-color: gold; }
+    #player { position: relative; width: 40px; height: 40px; background-color: purple; }
+  </style>
+</head>
+<body>
+  <h1>Arcade Controls</h1>
+  <p id="score">Score: 0</p>
+  <button id="point">+1 Point</button>
+  <button id="reset">Reset</button>
+  <button id="help" onclick="showHelp()">Help</button>
+  <p id="status">Press Help for instructions</p>
+  <div id="prize" class="card">Hover for the prize</div>
+  <div class="card game">Pinball</div>
+  <div class="card game">Air Hockey</div>
+  <div class="card game">Skee-Ball</div>
+  <h2>High Scores</h2>
+  <ul id="highScores"></ul>
+  <div id="player"></div>
+ 
+  <script>
+    let score = 0;
+    let x = 0;
+    let scoreText = document.getElementById("score");
+    let player = document.getElementById("player");
+    let topScores = ["Ana: 42", "Kai: 37", "Zoe: 30"];
+ 
+    // Your code goes here
+    //Write a function addPoint that adds 1 to score and uses textContent to set the text of #score to Score: followed by the score. Attach it to the +1 Point button with addEventListener. (Obj. 4.5)
+ ;
+
+function addPoint() {
+  score += 1;
+  scoreText.textContent = "Score: " + score;
+}
+document.getElementById("point").addEventListener("click", addPoint);
+//Write a function resetScore that sets score back to 0 and the text back to Score: 0. Attach it to the Reset button with the DOM property (.onclick). (Obj. 4.5)
+function resetScore() {
+  score = 0;
+  scoreText.textContent = "Score: 0";
+}
+//The Help button already has an HTML attribute handler: onclick="showHelp()". Write the function showHelp so the #status paragraph reads Use the arrow keys to move, with arrow keys in bold. Use <b> tags and the property that renders HTML. (Obj. 4.3)
+function showHelp() {
+  document.getElementById("status").innerHTML = "Use the <b>arrow keys</b> to move";}
+//Make the #prize card a hover card with addEventListener. On mouseover, its text becomes Prize: 500 tickets and its class becomes card glow. On mouseout, it goes back to Hover for the prize and card. (Obj. 4.2, 4.4)
+let prizeCard = document.getElementById("prize");
+
+prizeCard.addEventListener("mouseover", function() {
+  prizeCard.textContent = "Prize: 500 tickets";
+  prizeCard.className = "card glow";
+});
+
+prizeCard.addEventListener("mouseout", function() {
+  prizeCard.textContent = "Hover for the prize";
+  prizeCard.className = "card";
+});
+//Write a function showHighScores that loops through topScores. For each score, create an <li>, set its text to the score, use setAttribute to give it the class card, and append it to #highScores. Then call showHighScores(); so the list appears when the page opens. (Obj. 4.4)
+function showHighScores() {
+  let highScoresList = document.getElementById("highScores");
+  
+  for (let i = 0; i < topScores.length; i++) {
+    let li = document.createElement("li");
+    li.textContent = topScores[i];
+    li.setAttribute("class", "card");
+    highScoresList.appendChild(li);
+  }
+}
+//Listen for keydown on document, with a handler that has a parameter named event. Use a switch on event.key: ArrowRight adds 20 to x, and ArrowLeft subtracts 20. Then set player.style.left to x + "px". (Obj. 4.2, 4.5)
+document.addEventListener("keydown", function(event) {
+  switch (event.key) {
+    case "ArrowRight":
+      x += 20;
+      break;
+    case "ArrowLeft":
+      x -= 20;
+      break;
+  }
+
+  player.style.left = x + "px";
+});
+//Keep the player on screen. After the switch, if x is below 0, set it to 0. If x is above window.innerWidth - 60, set it to window.innerWidth - 60. Make the browser window narrower and test again. (Obj. 4.1)
+if (x < 0) {
+    x = 0;
+  }
+  if (x > window.innerWidth - 60) {
+    x = window.innerWidth - 60;
+  }
+
+  player.style.left = x + "px";
+  </script>
+</body>
+</html>
