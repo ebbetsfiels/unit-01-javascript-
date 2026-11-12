@@ -96,6 +96,22 @@ function getLetter(average)
 // Write findHighest(list) and findLowest(list).
 // Each uses a for loop and returns the STUDENT OBJECT, not just the number.
 
+function findHighest(list) {
+     let highestStudent = list[0];  for (let i = 1; i < list.length; i++) {
+    if (list[i].score > highestStudent.score) {
+      highestStudent = list[i];  }
+  } return highestStudent;
+}
+
+function findLowest(list) { 
+     let lowestStudent = list[0]; for (let i = 1; i < list.length; i++) {
+    if (list[i].score < lowestStudent.score) {
+      lowestStudent = list[i];    }
+  }
+  
+  return lowestStudent;
+}
+
 // STEP 5: Sort
 // Write sortByAverage(list) that sorts from highest to lowest average:
 //     list.sort((a, b) => b.getAverage() - a.getAverage());
