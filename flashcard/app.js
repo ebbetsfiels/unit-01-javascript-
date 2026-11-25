@@ -95,3 +95,59 @@ const deck = [
     "2.4"
   )
 ];
+//checkpoint 3 
+let current = 0;
+
+function showCard(index) {
+  const card = deck[index];
+  document.getElementById("cardLabel").textContent = card.getLabel();
+  document.getElementById("cardQuestion").textContent = card.question;
+
+  const answerEl = document.getElementById("cardAnswer");
+  answerEl.textContent = card.answer;
+  answerEl.style.display = "none";
+
+  document.getElementById("cardNumber").textContent =
+    "Card " + (index + 1) + " of " + deck.length;
+}
+
+function flipCard() {
+  const answerEl = document.getElementById("cardAnswer");
+  if (answerEl.style.display === "none") {
+    answerEl.style.display = "block";
+  } else {
+    answerEl.style.display = "none";
+  }
+}
+
+function nextCard() {
+  current = (current + 1) % deck.length;
+  showCard(current);
+}
+
+function highlightCard() {
+  document.getElementById("card").className = "card highlight";
+}
+
+function unhighlightCard() {
+  document.getElementById("card").className = "card";
+}
+
+function checkKey(event) {
+  if (event.key === "ArrowRight") {
+    nextCard();
+  }
+}
+
+function startApp() {
+  showCard(current);
+
+  document.getElementById("nextBtn").addEventListener("click", nextCard);
+
+  const cardEl = document.getElementById("card");
+  cardEl.onmouseover = highlightCard;
+  cardEl.onmouseout = unhighlightCard;
+
+  document.addEventListener("keydown", checkKey);
+}
+
