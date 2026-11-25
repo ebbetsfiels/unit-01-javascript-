@@ -150,4 +150,82 @@ function startApp() {
 
   document.addEventListener("keydown", checkKey);
 }
+//checkpoint 4
+
+let gotIt = 0;
+let missed = 0;
+
+function getRandom(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function shuffleCard() {
+  current = getRandom(0, deck.length - 1);
+  showCard(current);
+}
+
+function updateScore() {
+  const total = gotIt + missed;
+  const scoreEl = document.getElementById("scoreMsg");
+
+  if (total === 0) {
+    scoreEl.textContent = "No cards scored yet.";
+  } else {
+    const percent = (gotIt / total) * 100;
+    let feedback = "";
+
+    if (percent >= 90) {
+      feedback = "Exam ready!";
+    } else if (percent >= 70) {
+      feedback = "Almost there. Keep flipping.";
+    } else {
+      feedback = "Flip your missed cards again.";
+    }
+
+    scoreEl.textContent =
+      gotIt +
+      " of " +
+      total +
+      " correct (" +
+      percent.toFixed(1) +
+      "%). " +
+      feedback;
+  }
+}
+
+function markGot() {
+  gotIt += 1;
+  updateScore();
+  nextCard();
+}
+
+function markMissed() {
+  missed += 1;
+  updateScore();
+  nextCard();
+}
+
+function resetScore() {
+  if (confirm("Reset your score to 0?")) {
+    gotIt = 0;
+    missed = 0;
+    updateScore();
+  }
+}
+
+function showCountdown() {
+  const today = new Date();
+  const msPerDay = 1000 * 60 * 60 * 24;
+  const daysLeft = Math.ceil((EXAM_DATE - today) / msPerDay);
+  const formattedDate = EXAM_DATE.toLocaleDateString("en-US");
+  const countdownEl = document.getElementById("countdown");
+
+  if (daysLeft > 0) {
+    countdownEl.textContent =
+      daysLeft + " days until exam day (" + formattedDate + ")";
+  } else {
+    countdownEl.textContent =
+      "Exam day is here (" + formattedDate + "). You've got this!";
+  }
+}
 
